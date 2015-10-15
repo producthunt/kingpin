@@ -1,0 +1,44 @@
+{
+  "name": "hera",
+  "version": "0.0.0",
+  "description": "Immutable Records",
+  "main": "lib/Hera",
+  "directories": {
+    "lib": "./lib"
+  },
+  "files": [
+    "lib",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "rm -rf lib/* & babel src --out-dir lib",
+    "coverage": "istanbul cover ./node_modules/.bin/_mocha",
+    "lint": "eslint src/ test/",
+    "prepublish": "npm run build",
+    "pretest": "npm run lint",
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:producthunt/hera.git"
+  },
+  "keywords": [
+    "immutable",
+    "records"
+  ],
+  "author": "Veselin Todorov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/producthunt/hera/issues"
+  },
+  "homepage": "https://github.com/producthunt/hera",
+  "devDependencies": {
+    "babel": "^5.6.14",
+    "babel-eslint": "^3.1.20",
+    "chai": "^3.0.0",
+    "eslint": "^0.24.0",
+    "istanbul": "^0.3.17",
+    "mocha": "^2.2.5"
+  }
+}
