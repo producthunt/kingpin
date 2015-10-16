@@ -14,6 +14,18 @@ function setProp(proto, name) {
 }
 
 export default class Hera {
+  static from(object) {
+    if (object instanceof this) {
+      return object;
+    }
+
+    if (object.toJS) {
+      object = object.toJS();
+    }
+
+    return new this.constructor(object);
+  }
+
   constructor(params) {
     this.__params = params;
     this.__attrs = parse(params || {}, this.constructor.schema);

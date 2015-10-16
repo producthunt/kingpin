@@ -5,6 +5,14 @@ import Hera from './Hera';
 
 export default Hera;
 
+/**
+ * Schema decorator.
+ *
+ * @param {Object} params
+ * @returns {Decorator}
+ * @public
+ */
+
 export function schema(params) {
   if (!is.object(params)) {
     throw new Error('You must specify a schema');

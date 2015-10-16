@@ -2,6 +2,10 @@ import is from 'is';
 
 import {isEmpty, hasEmpty, construct} from './utils';
 
+/**
+ * Basic validators.
+ */
+
 const VALIDATORS = {
   [String]: is.string,
   [Number]: is.number,
@@ -10,7 +14,16 @@ const VALIDATORS = {
   [Object]: is.object,
 }
 
-export default function cast(value, types) {
+/**
+ * Cast a `value` to any of the given `types` that matches.
+ *
+ * @param {Mixed} value
+ * @param {Array} type
+ * @param {String} name
+ * @public
+ */
+
+export default function cast(value, types, name) {
   const isOptional = hasEmpty(types);
   const castable = types.filter((type) => !isEmpty(type));
   const isAny = castable.length === 0 && isOptional;
@@ -20,7 +33,7 @@ export default function cast(value, types) {
   }
 
   if (!isOptional && isEmpty(value)) {
-    throw new Error('you must provide value');
+    throw new Error(`You must provide a value for ${name}`);
   }
 
   for (const type of castable) {
@@ -42,5 +55,5 @@ export default function cast(value, types) {
     }
   }
 
-  throw new Error;
+  throw new Error(`The value "${value}" for "${name}" does not match any of its types`);
 }

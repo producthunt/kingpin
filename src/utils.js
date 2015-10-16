@@ -1,5 +1,13 @@
 import is from 'is';
 
+/**
+ * Check if `value` is null or undefined.
+ *
+ * @param {Mixed} value
+ * @returns {Boolean}
+ * @public
+ */
+
 export function isEmpty(value) {
   return is.undef(value) || is.nil(value);
 }
