@@ -12,9 +12,25 @@ export function isEmpty(value) {
   return is.undef(value) || is.nil(value);
 }
 
+/**
+ * Check if `types` has an empty type.
+ *
+ * @param {Array} types
+ * @returns {Boolean}
+ * @public
+ */
+
 export function hasEmpty(types) {
   return types.indexOf(null) !== -1 || types.indexOf(undefined) !== -1;
 }
+
+/**
+ * Deep freeze an object.
+ *
+ * @param {Object} o
+ * @returns {Object}
+ * @public
+ */
 
 export function freeze(o) {
   Object.freeze(o);
@@ -37,6 +53,14 @@ export function freeze(o) {
   return o;
 }
 
+/**
+ * toJS deep.
+ *
+ * @param {Immutable} immutable
+ * @returns {Object}
+ * @public
+ */
+
 export function toJSDeep(immutable) {
   let map = immutable.toJS();
 
@@ -55,6 +79,15 @@ export function toJSDeep(immutable) {
   return map;
 }
 
+/**
+ * Construct a `fn` with `value`.
+ *
+ * @param {Function} fn
+ * @param {Mixed} value
+ * @returns {Mixed}
+ * @public
+ */
+
 export function construct(fn, value) {
   if (fn === String
       || fn === Number
@@ -67,6 +100,14 @@ export function construct(fn, value) {
 
   return new fn(value);
 }
+
+/**
+ * Define a property on `proto` with `name`.
+ *
+ * @param {Object} proto
+ * @param {String} name
+ * @public
+ */
 
 export function setProp(proto, name) {
   Object.defineProperty(proto, name, {
