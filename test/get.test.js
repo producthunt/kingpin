@@ -1,10 +1,10 @@
 import {expect} from 'chai';
 
-import Hera, {schema} from '../src/';
+import Kingpin, {schema} from '../src/';
 
 test('get', () => {
   @schema({ title: null })
-  class Post extends Hera {}
+  class Post extends Kingpin {}
 
   expect(new Post({ title: 'test' }).get('title')).to.eq('test');
 });

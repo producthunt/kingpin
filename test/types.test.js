@@ -1,10 +1,10 @@
 import {expect} from 'chai';
 
-import Hera, {schema} from '../src/';
+import Kingpin, {schema} from '../src/';
 
 test('any type', () => {
   @schema({ title: null })
-  class Post extends Hera {}
+  class Post extends Kingpin {}
 
   expect(new Post({ title: 'test' }).title).to.eq('test');
   expect(new Post({ title: true }).title).to.eq(true);
@@ -12,7 +12,7 @@ test('any type', () => {
 
 test('string', () => {
   @schema({ title: String })
-  class Post extends Hera {}
+  class Post extends Kingpin {}
 
   expect(new Post({ title: 'test' }).title).to.eq('test');
   expect(() => new Post({ title: false })).to.throw();
@@ -21,7 +21,7 @@ test('string', () => {
 
 test('number', () => {
   @schema({ title: Number })
-  class Post extends Hera {}
+  class Post extends Kingpin {}
 
   expect(new Post({ title: 3 }).title).to.eq(3);
   expect(() => new Post({ title: false })).to.throw();
@@ -30,7 +30,7 @@ test('number', () => {
 
 test('boolean', () => {
   @schema({ title: Boolean })
-  class Post extends Hera {}
+  class Post extends Kingpin {}
 
   expect(new Post({ title: true }).title).to.eq(true);
   expect(() => new Post({ title: 'str' })).to.throw();
@@ -39,7 +39,7 @@ test('boolean', () => {
 
 test('object', () => {
   @schema({ title: Object })
-  class Post extends Hera {}
+  class Post extends Kingpin {}
 
   expect(new Post({ title: { foo: true } }).title).to.deep.eq({ foo: true });
   expect(() => new Post({ title: 'str' })).to.throw();
@@ -48,7 +48,7 @@ test('object', () => {
 
 test('array', () => {
   @schema({ title: Array })
-  class Post extends Hera {}
+  class Post extends Kingpin {}
 
   expect(new Post({ title: [1] }).title[0]).to.deep.eq(1);
   expect(() => new Post({ title: 'str' })).to.throw();
@@ -57,10 +57,10 @@ test('array', () => {
 
 test('classes', () => {
   @schema({ name: String })
-  class Author extends Hera {}
+  class Author extends Kingpin {}
 
   @schema({ author: Author })
-  class Post extends Hera {}
+  class Post extends Kingpin {}
 
   const post = new Post({ author: { name: 'John' } });
   expect(post.author).to.be.instanceof(Author);
@@ -69,7 +69,7 @@ test('classes', () => {
 
 test('array of classes with primitive type', () => {
   @schema({ authors: [String] })
-  class Post extends Hera {}
+  class Post extends Kingpin {}
 
   const post = new Post({ authors: [1, 2, 3] });
 
@@ -79,10 +79,10 @@ test('array of classes with primitive type', () => {
 
 test('array of classes with another record', () => {
   @schema({ name: String })
-  class Author extends Hera {}
+  class Author extends Kingpin {}
 
   @schema({ authors: [Author] })
-  class Post extends Hera {}
+  class Post extends Kingpin {}
 
   const post = new Post({ authors: [{ name: 'test' }] });
 
@@ -93,14 +93,14 @@ test('array of classes with another record', () => {
 
 test('optional', () => {
   @schema({ title: [String, null] })
-  class Post extends Hera {}
+  class Post extends Kingpin {}
 
   expect(new Post({ title: null }).title).to.eq(null);
 });
 
 test('one type or another type', () => {
   @schema({ title: [String, Number] })
-  class Post extends Hera {}
+  class Post extends Kingpin {}
 
   expect(new Post({ title: 'test' }).title).to.eq('test');
   expect(new Post({ title: 3 }).title).to.eq(3);

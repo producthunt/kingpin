@@ -1,10 +1,10 @@
 import {expect} from 'chai';
 
-import Hera, {schema} from '../src/';
+import Kingpin, {schema} from '../src/';
 
 test('immutable props', () => {
   @schema({ title: String })
-  class Post extends Hera {}
+  class Post extends Kingpin {}
 
   const post = new Post({ title: 'test' });
   expect(() => post.title = 3).to.throw();
@@ -26,7 +26,7 @@ test('immutable members', () => {
   }
 
   @schema({ arr: [Author] })
-  class Post extends Hera {}
+  class Post extends Kingpin {}
 
   const post = new Post({ arr: ['test'] });
 

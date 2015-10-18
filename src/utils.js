@@ -37,6 +37,24 @@ export function freeze(o) {
   return o;
 }
 
+export function toJSDeep(immutable) {
+  let map = immutable.toJS();
+
+  Object.keys(map).forEach((key) => {
+    if (map[key].toJS) {
+      map[key] = toJSDeep(map);
+    }
+
+    if (is.array(map[key])) {
+      map[key] = map[key].map((item) => {
+        return toJSDeep(item);
+      });
+    }
+  });
+
+  return map;
+}
+
 export function construct(fn, value) {
   if (fn === String
       || fn === Number
@@ -48,4 +66,16 @@ export function construct(fn, value) {
   }
 
   return new fn(value);
+}
+
+export function setProp(proto, name) {
+  Object.defineProperty(proto, name, {
+    get: function() {
+      return this.get(name);
+    },
+
+    set: function() {
+      throw new Error('Cannot set on an immutable object');
+    }
+  });
 }

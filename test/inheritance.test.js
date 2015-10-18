@@ -1,10 +1,10 @@
 import {expect} from 'chai';
 
-import Hera, {schema} from '../src/';
+import Kingpin, {schema} from '../src/';
 
 test('inheritance', () => {
   @schema({ title: Number })
-  class BasePost extends Hera {}
+  class BasePost extends Kingpin {}
 
   @schema({ description: String })
   class PostDesc extends BasePost {}
@@ -27,7 +27,7 @@ test('inheritance', () => {
 
 test('inheritance with arrays', () => {
   @schema({ title: [Number, null] })
-  class BasePost extends Hera {}
+  class BasePost extends Kingpin {}
 
   @schema({ title: [String] })
   class Post extends BasePost {}

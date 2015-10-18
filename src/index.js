@@ -1,9 +1,9 @@
 import is from 'is';
 
 import {freeze} from './utils';
-import Hera from './Hera';
+import Kingpin from './Kingpin';
 
-export default Hera;
+export default Kingpin;
 
 /**
  * Schema decorator.
