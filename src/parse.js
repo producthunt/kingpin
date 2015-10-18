@@ -1,7 +1,6 @@
 import is from 'is';
 
 import cast from './cast';
-import {freeze} from './utils';
 
 /**
  * Return all types for the given schema property.
@@ -38,8 +37,7 @@ export default function parse(params, schema) {
 
   Object.keys(schema).forEach((name) => {
     const types = getTypes(name, schema);
-    const value = cast(params[name], types, name);
-    ret[name] = freeze(value);
+    ret[name] = cast(params[name], types, name);
   });
 
   return ret;

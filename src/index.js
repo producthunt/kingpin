@@ -1,6 +1,5 @@
 import is from 'is';
 
-import {freeze} from './utils';
 import Kingpin from './Kingpin';
 
 export default Kingpin;
@@ -21,7 +20,6 @@ export function schema(params) {
   return function(Target) {
     const schema = Target.schema || {};
     Target.schema = {...schema, ...params};
-    freeze(Target.schema);
     return Target;
   };
 }

@@ -25,35 +25,6 @@ export function hasEmpty(types) {
 }
 
 /**
- * Deep freeze an object.
- *
- * @param {Object} o
- * @returns {Object}
- * @public
- */
-
-export function freeze(o) {
-  Object.freeze(o);
-
-  if (!o) return o;
-
-  var oIsFunction = typeof o === "function";
-  var hasOwnProp = Object.prototype.hasOwnProperty;
-
-  Object.getOwnPropertyNames(o).forEach(function (prop) {
-    if (hasOwnProp.call(o, prop)
-    && (oIsFunction ? prop !== 'caller' && prop !== 'callee' && prop !== 'arguments' : true )
-    && o[prop] !== null
-    && (typeof o[prop] === "object" || typeof o[prop] === "function")
-    && !Object.isFrozen(o[prop])) {
-      freeze(o[prop]);
-    }
-  });
-
-  return o;
-}
-
-/**
  * toJS deep.
  *
  * @param {Immutable} immutable

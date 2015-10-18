@@ -1,6 +1,6 @@
 import {Map} from 'immutable';
 
-import {freeze, toJSDeep, setProp} from './utils';
+import {toJSDeep, setProp} from './utils';
 import parse from './parse';
 
 /**
