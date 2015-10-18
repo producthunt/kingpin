@@ -45,6 +45,10 @@ export default class Kingpin {
     return toJSDeep(this._map);
   }
 
+  toJSON() {
+    return this.toJS();
+  }
+
   clone() {
     return new this.constructor(this.toJS());
   }
